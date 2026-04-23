@@ -7,7 +7,9 @@ const DATA_REDE = {
   "BGP": "Border Gateway Protocol. Responsável pelo roteamento entre sistemas autônomos na internet.",
   "DHCP": "Dynamic Host Configuration Protocol. Atribui endereços IP automaticamente aos dispositivos na rede.",
   "SNMP": "Simple Network Management Protocol. Usado para monitorar e gerenciar dispositivos de rede.",
-  "DNS": "Domain Name System. Converte nomes de domínio em endereços IP."
+  "DNS": "Domain Name System. Converte nomes de domínio em endereços IP.",
+  "ICMP": "Internet Control Message Protocol. Usado para enviar mensagens de erro e informações de diagnóstico na rede.",
+  "IP": "Internet Protocol. Rótulo numérico exclusivo que identifica dispositivos (computadores, celulares, impressoras) em uma rede, funcionando como um CEP digital"
 };
 
 export default function App() {
