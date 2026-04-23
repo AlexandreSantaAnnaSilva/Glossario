@@ -1,0 +1,127 @@
+/* 1. Reset Global - LIMPO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  
+  background-image: linear-gradient(135deg, #1e2a38 0%, #111a22 100%);
+  background-attachment: fixed;
+  color: #e8eaed;
+  
+  /* Centralização Vertical e Horizontal do conteúdo */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 25vh; 
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* 2. Container do Glossário */
+.google-wrapper {
+  width: 100%;
+  max-width: 584px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3. Título */
+.main-header h1 {
+  font-size: 42px;
+  margin-bottom: 30px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -1px;
+}
+
+/* 4. Barra de Pesquisa */
+.search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 24px;
+  border: 1px solid #3c4043;
+  border-radius: 28px;
+  background-color: rgba(48, 49, 52, 0.4);
+  transition: all 0.2s ease;
+}
+
+.search-box:hover, .search-box:focus-within {
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+  border-color: #5f6368;
+  background-color: #303134;
+}
+
+.search-icon {
+  margin-right: 15px;
+  font-size: 1.1rem;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #e8eaed;
+}
+
+/* 5. Card de Resposta */
+.result-card {
+  margin-top: 25px;
+  width: 100%;
+  padding: 25px;
+  background-color: #1a1b1f;
+  border: 1px solid #3c4043;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  text-align: left;
+  animation: fadeIn 0.3s ease;
+}
+
+.result-content h2 {
+  color: #8ab4f8;
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.result-content p {
+  color: #bdc1c6;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.not-found {
+  color: #9aa0a6;
+  font-style: italic;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
