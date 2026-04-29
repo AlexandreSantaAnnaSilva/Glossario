@@ -9,7 +9,9 @@ const DATA_REDE = {
   "SNMP": "Simple Network Management Protocol. Usado para monitorar e gerenciar dispositivos de rede.",
   "DNS": "Domain Name System. Converte nomes de domínio em endereços IP.",
   "ICMP": "Internet Control Message Protocol. Usado para enviar mensagens de erro e informações de diagnóstico na rede.",
-  "IP": "Internet Protocol. Rótulo numérico exclusivo que identifica dispositivos (computadores, celulares, impressoras) em uma rede, funcionando como um CEP digital."
+  "IP": "Internet Protocol. Rótulo numérico exclusivo que identifica dispositivos (computadores, celulares, impressoras) em uma rede, funcionando como um CEP digital.",
+  "VLAN": "Virtual Local Area Network. Segmentação lógica de uma rede física para melhorar a segurança e o desempenho.",
+  "Brodcast": "É um método de transmissão de dados, áudio ou vídeo onde uma única mensagem é enviada de um emissor para todos os receptores em uma mesma rede local (LAN) simultaneamente",
 };
 
 export default function App() {
