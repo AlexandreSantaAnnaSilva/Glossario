@@ -4,12 +4,22 @@
   min-height: 100vh;
   max-width: 584px;
   margin: 0 auto;
-  padding: 20px;
-  padding-top: 18vh;
+  padding: 12vh 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
+
+/* Imagem do Glossário */
+.glossario-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 22px;
+  animation: float 4s ease-in-out infinite; /* ← animação adicionada */
+  filter: drop-shadow(0 14px 26px rgba(126, 20, 255, 0.35)); /* ← brilho roxo igual */
+}
+
 
 /* Botão de voltar para a Home */
 .back-link {

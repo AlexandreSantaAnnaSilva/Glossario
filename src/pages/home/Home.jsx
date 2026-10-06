@@ -1,29 +1,13 @@
 import heroImg from '../../assets/hero.png';
+import iconGlossario from '../../assets/icon-glossario.png';
+import iconRank from '../../assets/icon-rank.png';
 import './Home.css';
-
-
-const TOOLS = [
-  {
-    icon: '📖',
-    title: 'Glossário Técnico',
-    description: 'Pesquise termos, siglas e protocolos de TI e Redes explicados de forma direta.',
-    cta: 'Acessar o Glossário',
-    status: 'live',
-  },
-  {
-    icon: '🏆',
-    title: 'TI Rank',
-    description: 'Dispute o ranking de conhecimento da turma em um quiz cronometrado.',
-    cta: 'Em breve',
-    status: 'soon',
-  },
-];
 
 export default function Home({ onOpenGlossario }) {
   return (
     <div className="home-wrapper">
       <div className="home-hero">
-        <img src={heroImg} alt="" className="hero-img" />
+        <img src={heroImg} alt="" className="home-img" />
         <span className="eyebrow">PORTAL DE ESTUDOS</span>
         <h1>Central de <span className="accent">TI</span></h1>
         <p className="home-sub">
@@ -32,24 +16,30 @@ export default function Home({ onOpenGlossario }) {
       </div>
 
       <div className="tool-grid">
-        {TOOLS.map((tool) => (
-          <article
-            key={tool.title}
-            className={`tool-card${tool.status === 'soon' ? ' is-soon' : ''}`}
-          >
-            {tool.status === 'soon' && <span className="soon-badge">EM BREVE</span>}
-            <div className="tool-icon">{tool.icon}</div>
-            <h2>{tool.title}</h2>
-            <p>{tool.description}</p>
-            <button
-              className="tool-cta"
-              disabled={tool.status === 'soon'}
-              onClick={tool.status === 'live' ? onOpenGlossario : undefined}
-            >
-              {tool.cta}{tool.status === 'live' && ' →'}
-            </button>
-          </article>
-        ))}
+
+        {/* Card Glossário */}
+        <article className="tool-card">
+          <div className="tool-icon">
+            <img src={iconGlossario} alt="Glossário" className="tool-icon-img" />
+          </div>
+          <h2>Glossário Técnico</h2>
+          <p>Pesquise termos, siglas e protocolos de TI e Redes explicados de forma direta.</p>
+          <button className="tool-cta" onClick={onOpenGlossario}>
+            Acessar o Glossário →
+          </button>
+        </article>
+
+        {/* Card TI Rank */}
+        <article className="tool-card is-soon">
+          <span className="soon-badge">EM BREVE</span>
+          <div className="tool-icon">
+            <img src={iconRank} alt="TI Rank" className="tool-icon-img" />
+          </div>
+          <h2>TI Rank</h2>
+          <p>Dispute o ranking de conhecimento da turma em um quiz cronometrado.</p>
+          <button className="tool-cta" disabled>Em breve</button>
+        </article>
+
       </div>
     </div>
   );
