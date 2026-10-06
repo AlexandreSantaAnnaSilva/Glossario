@@ -17,7 +17,7 @@
 }
 
 .hero-img {
-  width: 92px;
+  width: 300px;
   margin-bottom: 22px;
   animation: float 4s ease-in-out infinite;
   filter: drop-shadow(0 14px 26px rgba(126, 20, 255, 0.35));
