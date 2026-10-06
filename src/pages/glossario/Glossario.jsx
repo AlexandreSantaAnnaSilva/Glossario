@@ -1,5 +1,5 @@
 import { useMemo,useState } from 'react';
-import glossario from '../data/glossario';
+import glossario from '../../data/glossario';
 import './Glossario.css';
 
 

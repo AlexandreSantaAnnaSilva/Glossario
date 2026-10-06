@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import Home from './pages/Home';
-import Glossario from './pages/Glossario';
+import Home from './pages/home/Home';
+import Glossario from './pages/glossario/Glossario';
 
 export default function App() {
   const [page, setPage] = useState('home');

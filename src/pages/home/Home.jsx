@@ -1,5 +1,6 @@
-import heroImg from '../assets/hero.png';
+import heroImg from '../../assets/hero.png';
 import './Home.css';
+
 
 const TOOLS = [
   {
