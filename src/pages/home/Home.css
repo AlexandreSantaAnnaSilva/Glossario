@@ -1,11 +1,91 @@
+/* ============================================================
+   HOME.CSS — Central de TI
+   Organização: Reset → Layout → Navbar → Hero → Cards → Utils
+   ============================================================ */
+
+
+/* ── 1. LAYOUT BASE ─────────────────────────────────────── */
+
 .home-wrapper {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12vh 20px 60px;
+  padding: 80px 20px 60px; /* 80px = altura da navbar + respiro */
 }
+
+
+/* ── 2. NAVBAR ──────────────────────────────────────────── */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px; /* mesmo padrão do Fandom */
+  background: rgba(15, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #3c4043;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 100;
+}
+
+.navbar-brand {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* ── 3. USUÁRIO (navbar) ────────────────────────────────── */
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #aa3bff, #7e14ff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-greeting {
+  color: #e8eaed;
+  font-size: 13px;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #3c4043;
+  color: #9aa0a6;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  border-color: #f28b82;
+  color: #f28b82;
+}
+
+
+/* ── 4. HERO ────────────────────────────────────────────── */
 
 .home-hero {
   display: flex;
@@ -14,29 +94,6 @@
   text-align: center;
   max-width: 520px;
   margin-bottom: 56px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.tool-cta-secondary {
-  padding: 10px 20px;
-  border-radius: 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  background: transparent;
-  color: #aa3bff;
-  border: 1px solid #aa3bff;
-  font-family: inherit;
-  transition: all 0.2s ease;
-}
-
-.tool-cta-secondary:hover {
-  background: rgba(170, 59, 255, 0.1);
 }
 
 .home-img {
@@ -48,7 +105,7 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50%       { transform: translateY(-10px); }
 }
 
 .eyebrow {
@@ -81,6 +138,9 @@
   line-height: 1.6;
 }
 
+
+/* ── 5. CARDS (tool-grid) ───────────────────────────────── */
+
 .tool-grid {
   width: 100%;
   max-width: 720px;
@@ -108,21 +168,6 @@
   box-shadow: 0 14px 30px rgba(126, 20, 255, 0.22);
 }
 
-.tool-icon {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.tool-icon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .tool-card h2 {
   font-size: 19px;
   font-weight: 500;
@@ -134,34 +179,6 @@
   font-size: 14px;
   line-height: 1.55;
   flex-grow: 1;
-}
-
-.tool-cta {
-  align-self: flex-start;
-  margin-top: 6px;
-  background: linear-gradient(135deg, #aa3bff, #7e14ff);
-  color: #fff;
-  font-family: inherit;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.tool-cta:hover {
-  filter: brightness(1.12);
-  transform: translateX(2px);
-}
-
-.tool-cta:disabled {
-  background: #2c2f36;
-  color: #6b6f76;
-  cursor: not-allowed;
-  filter: none;
-  transform: none;
 }
 
 .is-soon {
@@ -181,8 +198,166 @@
   font-weight: 600;
 }
 
+
+/* ── 6. ÍCONES DOS CARDS ────────────────────────────────── */
+
+.tool-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tool-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+/* ── 7. BOTÕES ──────────────────────────────────────────── */
+
+.tool-cta {
+  align-self: flex-start;
+  margin-top: 6px;
+  background: linear-gradient(135deg, #aa3bff, #7e14ff);
+  color: #fff;
+  font-family: inherit;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-cta:hover {
+  filter: brightness(1.12);
+  transform: translateX(2px);
+}
+
+.tool-cta:disabled {
+  background: #2c2f36;
+  color: #6b6f76;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.tool-cta-secondary {
+  padding: 5px 14px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: #aa3bff;
+  border: 1px solid #aa3bff;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.tool-cta-secondary:hover {
+  background: rgba(170, 59, 255, 0.1);
+}
+
+.navbar .tool-cta {
+  align-self: center;
+  margin-top: 0;
+  padding: 5px 14px;
+  font-size: 13px;
+}
+
+
+/* ── 8. RESPONSIVO ──────────────────────────────────────── */
+
 @media (max-width: 480px) {
   .home-hero h1 {
     font-size: 34px;
   }
+
+  .navbar {
+    padding: 0 12px;
+  }
+}
+
+/* ── 9. BOTÃO DE TEMA ───────────────────────────────────── */
+
+.theme-btn {
+  background: transparent;
+  border: 1px solid #3c4043;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.theme-btn:hover {
+  border-color: #aa3bff;
+}
+
+
+/* ── 10. MODO CLARO ─────────────────────────────────────── */
+
+body.light-mode {
+  background: #f1f3f4;
+  color: #1a1a1a;
+}
+
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: #dadce0;
+}
+
+body.light-mode .navbar-brand {
+  color: #1a1a1a;
+}
+
+body.light-mode .user-greeting {
+  color: #3c4043;
+}
+
+body.light-mode .logout-btn {
+  border-color: #dadce0;
+  color: #3c4043;
+}
+
+body.light-mode .home-sub {
+  color: #5f6368;
+}
+
+body.light-mode .home-hero h1 {
+  color: #1a1a1a;
+}
+
+body.light-mode .tool-card {
+  background: #fff;
+  border-color: #dadce0;
+}
+
+body.light-mode .tool-card h2 {
+  color: #1a1a1a;
+}
+
+body.light-mode .tool-card p {
+  color: #5f6368;
+}
+
+body.light-mode .soon-badge {
+  background: rgba(0, 0, 0, 0.06);
+  color: #5f6368;
+}
+
+body.light-mode .tool-cta-secondary {
+  color: #7e14ff;
+  border-color: #7e14ff;
+}
+
+body.light-mode .theme-btn {
+  border-color: #dadce0;
 }
