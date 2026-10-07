@@ -11,28 +11,28 @@ export default function Login({ onVoltar, onLoginSucesso }) {
   const [carregando, setCarregando] = useState(false);
 
   async function handleLogin(e) {
-    e.preventDefault();
-    setErro('');
-    setCarregando(true);
+  e.preventDefault();
+  setErro('');
+  setCarregando(true);
 
-    try {
-      const credencial = await signInWithEmailAndPassword(auth, email, senha);
-      const uid = credencial.user.uid;
+  try {
+    const credencial = await signInWithEmailAndPassword(auth, email, senha);
+    const uid = credencial.user.uid;
 
-      const snap = await getDoc(doc(db, 'usuarios', uid));
-      const papel = snap.exists() ? snap.data().papel : 'aluno';
+    const snap = await getDoc(doc(db, 'usuarios', uid));
+    const dados = snap.exists() ? snap.data() : {};
 
-      onLoginSucesso(papel);
-    } catch (err) {
-      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        setErro('E-mail ou senha incorretos.');
-      } else {
-        setErro('Erro ao entrar. Tente novamente.');
-      }
-    } finally {
-      setCarregando(false);
+    onLoginSucesso(dados.papel || 'aluno', dados.nome || 'Usuário'); 
+  } catch (err) {
+    if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+      setErro('E-mail ou senha incorretos.');
+    } else {
+      setErro('Erro ao entrar. Tente novamente.');
     }
+  } finally {
+    setCarregando(false);
   }
+}
 
   return (
     <div className="login-wrapper">
