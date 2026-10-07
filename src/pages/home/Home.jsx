@@ -3,7 +3,7 @@ import iconGlossario from '../../assets/icon-glossario.png';
 import iconRank from '../../assets/icon-rank.png';
 import './Home.css';
 
-export default function Home({ onOpenGlossario }) {
+export default function Home({ onOpenGlossario , onCadastro, onLogin }) {
   return (
     <div className="home-wrapper">
       <div className="home-hero">
@@ -13,6 +13,10 @@ export default function Home({ onOpenGlossario }) {
         <p className="home-sub">
           Um só lugar para consultar termos técnicos e treinar os conceitos vistos em aula.
         </p>
+        <div className="hero-actions">
+          <button className="tool-cta" onClick={onLogin}>Entrar</button>
+          <button className="tool-cta-secondary" onClick={onCadastro}>Criar conta</button>
+        </div>
       </div>
 
       <div className="tool-grid">

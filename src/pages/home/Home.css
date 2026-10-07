@@ -16,6 +16,29 @@
   margin-bottom: 56px;
 }
 
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.tool-cta-secondary {
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: #aa3bff;
+  border: 1px solid #aa3bff;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.tool-cta-secondary:hover {
+  background: rgba(170, 59, 255, 0.1);
+}
+
 .home-img {
   width: 300px;
   margin-bottom: 22px;

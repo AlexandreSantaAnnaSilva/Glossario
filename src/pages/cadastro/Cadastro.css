@@ -1,0 +1,126 @@
+.cadastro-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1117;
+  padding: 20px;
+}
+
+.cadastro-card {
+  background: #1a1b1f;
+  border: 1px solid #3c4043;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.cadastro-card h1 {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.cadastro-sub {
+  color: #9aa0a6;
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.campo label {
+  color: #9aa0a6;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.campo input {
+  background: #303134;
+  border: 1px solid #3c4043;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e8eaed;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus {
+  border-color: #aa3bff;
+}
+
+.campo input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.cadastro-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #aa3bff, #7e14ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: filter 0.2s;
+}
+
+.cadastro-btn:hover {
+  filter: brightness(1.12);
+}
+
+.voltar-link {
+  display: block;
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  color: #9aa0a6;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  transition: color 0.2s;
+}
+
+.voltar-link:hover {
+  color: #e8eaed;
+}
+
+.erro {
+  color: #f28b82;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.sucesso-icon {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cadastro-card h2 {
+  color: #fff;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.cadastro-card > p {
+  color: #9aa0a6;
+  text-align: center;
+  margin-bottom: 24px;
+}
