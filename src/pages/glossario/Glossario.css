@@ -1,4 +1,11 @@
-/* Container do Glossário */
+/* ============================================================
+   GLOSSARIO.CSS — Página de Busca
+   Organização: Layout → Imagem → Navegação → Header → Busca → Resultado → Animações → Modo Claro
+   ============================================================ */
+
+
+/* ── 1. LAYOUT BASE ─────────────────────────────────────── */
+
 .google-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -11,17 +18,25 @@
   justify-content: center;
 }
 
-/* Imagem do Glossário */
+
+/* ── 2. IMAGEM ──────────────────────────────────────────── */
+
 .glossario-img {
   width: 180px;
   height: auto;
   margin-bottom: 22px;
-  animation: float 4s ease-in-out infinite; /* ← animação adicionada */
-  filter: drop-shadow(0 14px 26px rgba(126, 20, 255, 0.35)); /* ← brilho roxo igual */
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 14px 26px rgba(126, 20, 255, 0.35));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
 
-/* Botão de voltar para a Home */
+/* ── 3. NAVEGAÇÃO (botão voltar) ────────────────────────── */
+
 .back-link {
   position: fixed;
   top: 24px;
@@ -35,12 +50,22 @@
   border-radius: 20px;
   transition: all 0.2s ease;
 }
+
 .back-link:hover {
   color: #e8eaed;
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* Título */
+
+/* ── 4. HEADER / TÍTULO ─────────────────────────────────── */
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .main-header h1 {
   font-size: 42px;
   margin-bottom: 30px;
@@ -49,7 +74,9 @@
   letter-spacing: -1px;
 }
 
-/* Barra de Pesquisa */
+
+/* ── 5. BUSCA ───────────────────────────────────────────── */
+
 .search-container {
   width: 100%;
   display: flex;
@@ -68,7 +95,8 @@
   transition: all 0.2s ease;
 }
 
-.search-box:hover, .search-box:focus-within {
+.search-box:hover,
+.search-box:focus-within {
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   border-color: #5f6368;
   background-color: #303134;
@@ -89,7 +117,9 @@
   font-family: inherit;
 }
 
-/* Card de Resposta */
+
+/* ── 6. CARD DE RESULTADO ───────────────────────────────── */
+
 .result-card {
   margin-top: 25px;
   width: 100%;
@@ -133,7 +163,56 @@
   text-align: center;
 }
 
+
+/* ── 7. ANIMAÇÕES ───────────────────────────────────────── */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── 8. MODO CLARO ──────────────────────────────────────── */
+
+body.light-mode .back-link {
+  color: #5f6368;
+}
+
+body.light-mode .back-link:hover {
+  color: #1a1a1a;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .main-header h1 {
+  color: #1a1a1a;
+}
+
+body.light-mode .search-box {
+  background-color: #fff;
+  border-color: #dadce0;
+}
+
+body.light-mode .search-box:hover,
+body.light-mode .search-box:focus-within {
+  background-color: #fff;
+  border-color: #aa3bff;
+  box-shadow: 0 1px 12px rgba(170, 59, 255, 0.15);
+}
+
+body.light-mode .search-box input {
+  color: #1a1a1a;
+}
+
+body.light-mode .result-card {
+  background-color: #fff;
+  border-color: #dadce0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .result-content p {
+  color: #3c4043;
+}
+
+body.light-mode .not-found {
+  color: #5f6368;
 }
