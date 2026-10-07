@@ -8,11 +8,11 @@ import Login from './pages/login/Login';
 export default function App() {
   const [page, setPage] = useState('home');
   const [papel, setPapel] = useState(null);
-  const [nomeUsuario, setNomeUsuario] = useState(null); // ← novo
+  const [nomeUsuario, setNomeUsuario] = useState(null);
 
-  function handleLoginSucesso(papelUsuario, nome) { // ← recebe nome
+  function handleLoginSucesso(papelUsuario, nome) {
     setPapel(papelUsuario);
-    setNomeUsuario(nome); // ← salva nome
+    setNomeUsuario(nome);
     setPage(papelUsuario === 'professor' ? 'professor' : 'aluno');
   }
 
@@ -20,6 +20,10 @@ export default function App() {
     setPapel(null);
     setNomeUsuario(null);
     setPage('home');
+  }
+
+  function handleNomeAtualizado(novoNome) { // ← novo
+    setNomeUsuario(novoNome);
   }
 
   if (page === 'glossario') {
@@ -37,17 +41,18 @@ export default function App() {
     />;
   }
 
-if (page === 'aluno') {
-  return (
-    <Home
-      onOpenGlossario={() => setPage('glossario')}
-      onCadastro={() => setPage('cadastro')}
-      onLogin={() => setPage('login')}
-      nomeUsuario={nomeUsuario}
-      onLogout={handleLogout}
-    />
-  );
-}
+  if (page === 'aluno') {
+    return (
+      <Home
+        onOpenGlossario={() => setPage('glossario')}
+        onCadastro={() => setPage('cadastro')}
+        onLogin={() => setPage('login')}
+        nomeUsuario={nomeUsuario}
+        onLogout={handleLogout}
+        onNomeAtualizado={handleNomeAtualizado} // ← novo
+      />
+    );
+  }
 
   if (page === 'professor') {
     return <div style={{color:'#fff', padding:'40px'}}>
@@ -62,6 +67,7 @@ if (page === 'aluno') {
       onLogin={() => setPage('login')}
       nomeUsuario={nomeUsuario}
       onLogout={handleLogout}
+      onNomeAtualizado={handleNomeAtualizado} // ← novo
     />
   );
 }
