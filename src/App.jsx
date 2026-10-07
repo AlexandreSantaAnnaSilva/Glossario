@@ -8,14 +8,22 @@ import Login from './pages/login/Login';
 export default function App() {
   const [page, setPage] = useState('home');
   const [papel, setPapel] = useState(null);
+  const [nomeUsuario, setNomeUsuario] = useState(null); // ← novo
 
-  function handleLoginSucesso(papelUsuario) {
+  function handleLoginSucesso(papelUsuario, nome) { // ← recebe nome
     setPapel(papelUsuario);
+    setNomeUsuario(nome); // ← salva nome
     setPage(papelUsuario === 'professor' ? 'professor' : 'aluno');
   }
 
+  function handleLogout() {
+    setPapel(null);
+    setNomeUsuario(null);
+    setPage('home');
+  }
+
   if (page === 'glossario') {
-    return <Glossario onBack={() => setPage('home')} />;
+    return <Glossario onBack={() => setPage('home')} nomeUsuario={nomeUsuario} onLogout={handleLogout} />;
   }
 
   if (page === 'cadastro') {
@@ -29,10 +37,17 @@ export default function App() {
     />;
   }
 
-  if (page === 'aluno') {
-    return <Glossario onBack={() => setPage('home')} />;
-    // Futuramente: dashboard completo do aluno
-  }
+if (page === 'aluno') {
+  return (
+    <Home
+      onOpenGlossario={() => setPage('glossario')}
+      onCadastro={() => setPage('cadastro')}
+      onLogin={() => setPage('login')}
+      nomeUsuario={nomeUsuario}
+      onLogout={handleLogout}
+    />
+  );
+}
 
   if (page === 'professor') {
     return <div style={{color:'#fff', padding:'40px'}}>
@@ -45,6 +60,8 @@ export default function App() {
       onOpenGlossario={() => setPage('glossario')}
       onCadastro={() => setPage('cadastro')}
       onLogin={() => setPage('login')}
+      nomeUsuario={nomeUsuario}
+      onLogout={handleLogout}
     />
   );
 }
