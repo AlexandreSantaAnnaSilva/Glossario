@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'; // ← adiciona useState e useEffect
+import { useState, useEffect } from 'react';
 import heroImg from '../../assets/hero.png';
 import iconGlossario from '../../assets/icon-glossario.png';
 import iconRank from '../../assets/icon-rank.png';
+import PerfilDropdown from '../../components/PerfilDropdown';
 import './Home.css';
 
 export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario, onLogout }) {
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('tema') !== 'claro'; // padrão: escuro
+    return localStorage.getItem('tema') !== 'claro';
   });
+  const [mostrarPerfil, setMostrarPerfil] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle('light-mode', !darkMode);
@@ -27,13 +29,21 @@ export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario
           </button>
 
           {nomeUsuario ? (
-            <>
-              <div className="user-avatar">
+            <div className="navbar-perfil">
+              <button
+                className="user-avatar"
+                onClick={() => setMostrarPerfil(!mostrarPerfil)}
+              >
                 {nomeUsuario.charAt(0).toUpperCase()}
-              </div>
-              <span className="user-greeting">Olá, {nomeUsuario}</span>
-              <button className="logout-btn" onClick={onLogout}>Sair</button>
-            </>
+              </button>
+              {mostrarPerfil && (
+                <PerfilDropdown
+                  nomeUsuario={nomeUsuario}
+                  onLogout={() => { setMostrarPerfil(false); onLogout(); }}
+                  onNomeAtualizado={(novoNome) => { onNomeAtualizado(novoNome); setMostrarPerfil(false); }}
+                />
+              )}
+            </div>
           ) : (
             <>
               <button className="tool-cta-secondary" onClick={onLogin}>Entrar</button>

@@ -46,6 +46,30 @@
   gap: 10px;
 }
 
+.navbar-perfil {
+  position: relative;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #aa3bff, #7e14ff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: filter 0.2s;
+}
+
+.user-avatar:hover {
+  filter: brightness(1.2);
+}
+
 
 /* ── 3. USUÁRIO (navbar) ────────────────────────────────── */
 
