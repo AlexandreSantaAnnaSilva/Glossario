@@ -3,7 +3,9 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import './PerfilDropdown.css';
 
-export default function PerfilDropdown({ nomeUsuario, onLogout, onNomeAtualizado }) {
+export default function PerfilDropdown(
+  { nomeUsuario, onLogout, onNomeAtualizado, onAnotacoes }
+) {
   const [editando, setEditando] = useState(false);
   const [novoNome, setNovoNome] = useState(nomeUsuario);
   const [salvando, setSalvando] = useState(false);
@@ -12,7 +14,6 @@ export default function PerfilDropdown({ nomeUsuario, onLogout, onNomeAtualizado
     if (!novoNome.trim()) return;
     setSalvando(true);
     try {
-      // Busca o UID do usuário logado
       const { auth } = await import('../firebase');
       const uid = auth.currentUser.uid;
       await updateDoc(doc(db, 'usuarios', uid), { nome: novoNome });
@@ -38,6 +39,13 @@ export default function PerfilDropdown({ nomeUsuario, onLogout, onNomeAtualizado
 
       <div className="perfil-divider" />
 
+      {/* Minhas Anotações ← novo */}
+      <button className="perfil-item" onClick={onAnotacoes}>
+        📝 Minhas Anotações
+      </button>
+
+      <div className="perfil-divider" />
+
       {/* Editar nome */}
       {editando ? (
         <div className="perfil-editar">
@@ -52,7 +60,9 @@ export default function PerfilDropdown({ nomeUsuario, onLogout, onNomeAtualizado
             <button onClick={handleSalvarNome} disabled={salvando}>
               {salvando ? 'Salvando...' : 'Salvar'}
             </button>
-            <button className="cancelar" onClick={() => { setEditando(false); setNovoNome(nomeUsuario); }}>
+            <button className="cancelar" onClick={() => { 
+              setEditando(false); setNovoNome(nomeUsuario); 
+              }}>
               Cancelar
             </button>
           </div>

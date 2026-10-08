@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import Glossario from './pages/glossario/Glossario';
 import Cadastro from './pages/cadastro/Cadastro';
 import Login from './pages/login/Login';
+import Anotacoes from './pages/anotacoes/Anotacoes';
 
 export default function App() {
   const [page, setPage] = useState('home');
@@ -13,7 +14,7 @@ export default function App() {
   function handleLoginSucesso(papelUsuario, nome) {
     setPapel(papelUsuario);
     setNomeUsuario(nome);
-    setPage(papelUsuario === 'professor' ? 'professor' : 'aluno');
+    setPage(papelUsuario === 'professor' ? 'professor' : 'home');
   }
 
   function handleLogout() {
@@ -22,7 +23,7 @@ export default function App() {
     setPage('home');
   }
 
-  function handleNomeAtualizado(novoNome) { // ← novo
+  function handleNomeAtualizado(novoNome) {
     setNomeUsuario(novoNome);
   }
 
@@ -41,17 +42,8 @@ export default function App() {
     />;
   }
 
-  if (page === 'aluno') {
-    return (
-      <Home
-        onOpenGlossario={() => setPage('glossario')}
-        onCadastro={() => setPage('cadastro')}
-        onLogin={() => setPage('login')}
-        nomeUsuario={nomeUsuario}
-        onLogout={handleLogout}
-        onNomeAtualizado={handleNomeAtualizado} // ← novo
-      />
-    );
+  if (page === 'anotacoes') {
+    return <Anotacoes onBack={() => setPage('home')} />;
   }
 
   if (page === 'professor') {
@@ -60,6 +52,7 @@ export default function App() {
     </div>;
   }
 
+  // home e aluno usam o mesmo componente Home
   return (
     <Home
       onOpenGlossario={() => setPage('glossario')}
@@ -67,7 +60,8 @@ export default function App() {
       onLogin={() => setPage('login')}
       nomeUsuario={nomeUsuario}
       onLogout={handleLogout}
-      onNomeAtualizado={handleNomeAtualizado} // ← novo
+      onNomeAtualizado={handleNomeAtualizado}
+      onAnotacoes={() => setPage('anotacoes')}
     />
   );
 }

@@ -5,7 +5,7 @@ import iconRank from '../../assets/icon-rank.gif';
 import PerfilDropdown from '../../components/PerfilDropdown';
 import './Home.css';
 
-export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario, onLogout }) {
+export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario, onLogout, onNomeAtualizado, onAnotacoes }) { // ← onNomeAtualizado e onAnotacoes adicionados
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('tema') !== 'claro';
   });
@@ -23,7 +23,6 @@ export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario
         <span className="navbar-brand">Central de <span className="accent">TI</span></span>
         <div className="navbar-actions">
 
-          {/* Botão de tema */}
           <button className="theme-btn" onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? '☀️' : '🌙'}
           </button>
@@ -40,7 +39,8 @@ export default function Home({ onOpenGlossario, onCadastro, onLogin, nomeUsuario
                 <PerfilDropdown
                   nomeUsuario={nomeUsuario}
                   onLogout={() => { setMostrarPerfil(false); onLogout(); }}
-                  onNomeAtualizado={(novoNome) => { onNomeAtualizado(novoNome); setMostrarPerfil(false); }}
+                  onNomeAtualizado={(novoNome) => { onNomeAtualizado(novoNome); setMostrarPerfil(false); }} // ← corrigido
+                  onAnotacoes={() => { setMostrarPerfil(false); onAnotacoes(); }} // ← novo
                 />
               )}
             </div>
