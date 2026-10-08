@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import heroImg from '../../assets/hero.png';
-import iconGlossario from '../../assets/icon-glossario.png';
-import iconRank from '../../assets/icon-rank.png';
+import iconGlossario from '../../assets/icon-glossario.gif';
+import iconRank from '../../assets/icon-rank.gif';
 import PerfilDropdown from '../../components/PerfilDropdown';
 import './Home.css';
 
