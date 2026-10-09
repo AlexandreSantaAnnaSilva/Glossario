@@ -72,10 +72,9 @@
 /* ── 4. GRID DE MATÉRIAS ────────────────────────────────── */
 
 .materias-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .materia-coluna {
