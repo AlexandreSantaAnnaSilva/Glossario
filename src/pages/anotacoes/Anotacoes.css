@@ -364,3 +364,35 @@ body.light-mode .editor-body { background: #fff; color: #1a1a1a; }
   text-align: center;
   margin-top: 60px;
 }
+
+/* ── 10. AÇÕES DO CARD ──────────────────────────────────── */
+
+.anotacao-acoes {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.acao-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.acao-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.acao-deletar:hover {
+  background: rgba(242, 139, 130, 0.12);
+}
+
+.anotacoes-wrapper .back-link {
+  position: static;
+  border: 1px solid #3c4043;
+}

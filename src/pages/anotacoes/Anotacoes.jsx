@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where, orderBy, serverTimestamp, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import AnotacaoEditor from './AnotacaoEditor';
 import './Anotacoes.css';
@@ -13,6 +13,7 @@ const MATERIAS = [
 export default function Anotacoes({ onBack }) {
   const [anotacoes, setAnotacoes] = useState([]);
   const [criando, setCriando] = useState(false);
+  const [editando, setEditando] = useState(null);
   const [materiaFiltro, setMateriaFiltro] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [titulo, setTitulo] = useState('');
@@ -39,31 +40,70 @@ export default function Anotacoes({ onBack }) {
     setCarregando(false);
   }
 
+  // Abre o modal de edição preenchido com os dados da anotação
+  function abrirEdicao(anotacao) {
+    setEditando(anotacao);
+    setTitulo(anotacao.titulo);
+    setMateria(anotacao.materia);
+    setDataAula(anotacao.dataAula);
+    setProfessor(anotacao.professor);
+    setConteudo(anotacao.conteudo);
+  }
+
+  function fecharModal() {
+    setCriando(false);
+    setEditando(null);
+    setTitulo('');
+    setMateria(MATERIAS[0]);
+    setDataAula('');
+    setProfessor('Alexandre');
+    setConteudo('');
+  }
+
   async function handleSalvar() {
     if (!titulo.trim() || !conteudo.trim()) return;
     setSalvando(true);
     try {
       const uid = auth.currentUser.uid;
-      await addDoc(collection(db, 'anotacoes'), {
-        uid,
-        titulo,
-        materia,
-        dataAula,
-        professor,
-        conteudo,
-        criadoEm: serverTimestamp(),
-      });
-      setTitulo('');
-      setMateria(MATERIAS[0]);
-      setDataAula('');
-      setProfessor('Alexandre');
-      setConteudo('');
-      setCriando(false);
+
+      if (editando) {
+        // ← Atualiza anotação existente
+        await updateDoc(doc(db, 'anotacoes', editando.id), {
+          titulo,
+          materia,
+          dataAula,
+          professor,
+          conteudo,
+        });
+      } else {
+        // ← Cria nova anotação
+        await addDoc(collection(db, 'anotacoes'), {
+          uid,
+          titulo,
+          materia,
+          dataAula,
+          professor,
+          conteudo,
+          criadoEm: serverTimestamp(),
+        });
+      }
+
+      fecharModal();
       carregarAnotacoes();
     } catch (err) {
       console.error('Erro ao salvar:', err);
     } finally {
       setSalvando(false);
+    }
+  }
+
+  async function handleDeletar(id) {
+    if (!confirm('Tem certeza que deseja excluir esta anotação?')) return;
+    try {
+      await deleteDoc(doc(db, 'anotacoes', id));
+      carregarAnotacoes();
+    } catch (err) {
+      console.error('Erro ao deletar:', err);
     }
   }
 
@@ -73,6 +113,7 @@ export default function Anotacoes({ onBack }) {
   }, {});
 
   const materiasVisiveis = materiaFiltro ? [materiaFiltro] : MATERIAS;
+  const modalAberto = criando || editando !== null;
 
   return (
     <div className="anotacoes-wrapper">
@@ -103,10 +144,11 @@ export default function Anotacoes({ onBack }) {
         ))}
       </div>
 
-      {criando && (
-        <div className="modal-overlay" onClick={() => setCriando(false)}>
+      {/* Modal de criar/editar */}
+      {modalAberto && (
+        <div className="modal-overlay" onClick={fecharModal}>
           <div className="modal-card" onClick={e => e.stopPropagation()}>
-            <h2>Nova Anotação</h2>
+            <h2>{editando ? 'Editar Anotação' : 'Nova Anotação'}</h2>
 
             <div className="campo">
               <label>Título da aula</label>
@@ -153,11 +195,11 @@ export default function Anotacoes({ onBack }) {
             </div>
 
             <div className="modal-acoes">
-              <button className="cancelar-btn" onClick={() => setCriando(false)}>
+              <button className="cancelar-btn" onClick={fecharModal}>
                 Cancelar
               </button>
               <button className="salvar-btn" onClick={handleSalvar} disabled={salvando}>
-                {salvando ? 'Salvando...' : 'Salvar Anotação'}
+                {salvando ? 'Salvando...' : editando ? 'Salvar Edição' : 'Salvar Anotação'}
               </button>
             </div>
           </div>
@@ -179,6 +221,11 @@ export default function Anotacoes({ onBack }) {
                     <div className="anotacao-meta">
                       <span className="anotacao-data">📅 {a.dataAula || 'Sem data'}</span>
                       <span className="anotacao-prof">👤 {a.professor}</span>
+                      {/* ← Botões de ação */}
+                      <div className="anotacao-acoes">
+                        <button className="acao-btn" onClick={() => abrirEdicao(a)}>✏️</button>
+                        <button className="acao-btn acao-deletar" onClick={() => handleDeletar(a.id)}>🗑️</button>
+                      </div>
                     </div>
                     <h3 className="anotacao-titulo">{a.titulo}</h3>
                     <div
